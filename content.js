@@ -16,9 +16,14 @@ function handleVideoEnd() {
         // localストレージから保存されたURLを取得
         chrome.storage.local.get('customNextVideo', function (data) {
             if (data.customNextVideo && data.customNextVideo.trim() !== "") {
-                setTimeout(() => {
-                    window.location.href = data.customNextVideo;
-                }, 500);
+                const nextVideoUrl = data.customNextVideo;
+                // URLをクリア
+                chrome.storage.local.remove('customNextVideo', function () {
+                    // URLクリア後に遷移
+                    setTimeout(() => {
+                        window.location.href = nextVideoUrl;
+                    }, 500);
+                });
             }
         });
     } catch (error) {
