@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "Custom Next Video for YouTube",
+    "version": "1.0",
+    "description": "YouTubeで次に再生する動画をユーザーが指定できる拡張機能",
+    "permissions": [
+        "storage",
+        "scripting"
+    ],
+    "host_permissions": [
+        "*://*.youtube.com/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.youtube.com/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "icon.png"
+    },
+    "icons": {
+        "48": "icon.png",
+        "128": "icon.png"
+    }
+}
